@@ -12,3 +12,9 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+
+# jika ingin melihat perubahan commit
+git fetch
+git config pull.rebase true
+git pull origin main   
+php artisan serve          

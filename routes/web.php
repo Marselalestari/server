@@ -11,7 +11,7 @@ Route::get('/', function () {
 // Dashboard User
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('user.dashboard.index');
     })->name('dashboard');
 });
 
