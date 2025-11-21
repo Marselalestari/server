@@ -80,7 +80,7 @@
                 <i class="fas fa-th-large mr-3"></i> Dashboard
             </a>
 
-<a href="{{ route('admin.users.index') }}" 
+<a href="{{ route('admin.users.index') }}"
    class="flex items-center px-4 py-3 rounded-lg text-sm font-medium hover:bg-card-dark/50">
     <i class="fas fa-users mr-3"></i> Kelola Pengguna
 </a>
@@ -227,7 +227,7 @@
         </div>
 
     </div>
-</div> 
+</div>
 
             <!-- ROW BAWAH: LAPORAN -->
             <div class="lg:col-span-4 dashboard-card p-6 rounded-xl">

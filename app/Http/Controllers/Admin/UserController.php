@@ -12,7 +12,7 @@ class UserController extends Controller
 public function index()
 {
     // Ambil semua user beserta VPS mereka
-    $users = User::with('vps')->get(); 
+    $users = User::with('vps')->get();
     return view('admin.users.index', compact('users'));
 }
 

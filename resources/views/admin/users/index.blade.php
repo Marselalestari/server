@@ -1,59 +1,73 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="p-6">
+<div class="p-6 md:p-10">
 
-    <h2 class="text-2xl font-bold text-white mb-6">Kelola Pengguna</h2>
+    <!-- TITLE -->
+    <h2 class="text-3xl font-bold mb-8">Kelola Pengguna</h2>
 
     <!-- GRID USER -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
         @foreach($users as $user)
-        <div class="dashboard-card p-6 rounded-xl relative overflow-hidden">
+        <div class="dashboard-card p-6 rounded-xl relative overflow-hidden group">
 
-            <!-- ICON BESAR DI BACKGROUND -->
+            <!-- ICON GHOST BACKGROUND (match dashboard) -->
             <i class="fas fa-users text-accent-purple text-opacity-20 absolute top-4 right-4 text-6xl"></i>
 
-            <!-- NAMA & EMAIL -->
-            <h3 class="text-white font-semibold text-lg mb-1">{{ $user->name }}</h3>
+            <!-- ICON BADGE (sama gaya dashboard) -->
+            <div class="bg-accent-purple/20 text-accent-purple p-3 rounded-full inline-block mb-4">
+                <i class="fas fa-user"></i>
+            </div>
+
+            <!-- NAMA -->
+            <h3 class="text-xl font-semibold">{{ $user->name }}</h3>
             <p class="text-gray-400 text-sm mb-4">{{ $user->email }}</p>
 
-            <!-- VPS USER -->
+            <!-- VPS -->
             <div class="mb-4">
-                <p class="text-gray-300 text-sm mb-1 font-medium">VPS</p>
-                @if($user->vps && $user->vps->count() > 0)
-                    <ul class="text-gray-200 text-sm list-disc list-inside">
+                <p class="text-gray-300 text-xs font-medium mb-1">VPS Dimiliki</p>
+
+                @if($user->vps && $user->vps->count())
+                    <ul class="text-gray-200 text-sm list-disc list-inside space-y-1">
                         @foreach($user->vps as $vps)
-                        <li>{{ $vps->name }} - {{ $vps->cpu }} CPU / {{ $vps->ram }} GB RAM</li>
+                        <li>{{ $vps->name }} — {{ $vps->cpu }} CPU / {{ $vps->ram }}GB RAM</li>
                         @endforeach
                     </ul>
                 @else
-                    <p class="text-gray-500 text-sm">Belum memiliki VPS</p>
+                    <p class="text-gray-500 text-sm">Belum ada VPS</p>
                 @endif
             </div>
 
             <!-- ROLE -->
             <div class="mb-4">
-                @if($user->role === 'admin')
-                    <span class="px-3 py-1 bg-accent-purple text-white rounded-full text-sm">Admin</span>
-                @else
-                    <span class="px-3 py-1 bg-purple-600 text-white rounded-full text-sm">User</span>
-                @endif
+                <span class="px-3 py-1 rounded-full text-xs
+                    {{ $user->role === 'admin'
+                        ? 'bg-accent-purple text-white'
+                        : 'bg-purple-600 text-white' }}">
+                    {{ ucfirst($user->role) }}
+                </span>
             </div>
 
-            <!-- ACTION -->
-            <div class="flex justify-end gap-2 mt-4">
+            <!-- BUTTON ACTION -->
+            <div class="flex justify-end gap-2">
+
                 <a href="{{ route('admin.users.edit', $user->id) }}"
-                   class="px-3 py-1 bg-accent-purple text-white rounded-lg hover:bg-purple-700">
+                    class="px-4 py-2 bg-accent-purple text-white rounded-lg text-sm
+                           hover:bg-purple-700 transition">
                     Edit
                 </a>
+
                 <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                    <button
+                        class="px-4 py-2 bg-red-500 text-white rounded-lg text-sm
+                               hover:bg-red-600 transition">
                         Hapus
                     </button>
                 </form>
+
             </div>
 
         </div>
