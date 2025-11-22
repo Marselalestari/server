@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vps extends Model
+class VpsRequest extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,8 @@ class Vps extends Model
         'ram',
         'storage',
         'os',
-        'location',
-        'description',
-        'status'
+        'lokasi',
+        'keterangan',
+        'status',
     ];
 }

@@ -87,14 +87,22 @@
                 Dashboard
             </a>
             <!-- Mengganti hover:bg-bila-purple/50 menjadi hover:bg-card-dark/50 -->
+<a href="#" class="flex items-center px-4 py-3 rounded-lg text-sm font-medium hover:bg-card-dark/50 transition duration-150">
+    <i class="fas fa-layer-group mr-3"></i>
+    Layanan Saya
+</a>
+
+
             <a href="#" class="flex items-center px-4 py-3 rounded-lg text-sm font-medium hover:bg-card-dark/50 transition duration-150">
-                <i class="fas fa-layer-group mr-3"></i>
-                Layanan Saya
+                <i class="fas fa-history mr-3"></i>
+                Riwayat Pemesanan
             </a>
             <a href="#" class="flex items-center px-4 py-3 rounded-lg text-sm font-medium hover:bg-card-dark/50 transition duration-150">
                 <i class="fas fa-history mr-3"></i>
                 Riwayat Pemesanan
             </a>
+
+
         </nav>
 
         <!-- Spacer -->

@@ -14,6 +14,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/dashboard', function () {
         return view('user.dashboard.index');
     })->name('dashboard');
+
+
+    
 });
 
 // Dashboard ADMIN AREA
