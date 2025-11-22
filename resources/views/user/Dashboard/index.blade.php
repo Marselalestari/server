@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -367,4 +367,17 @@
         </div>
     </div>
 </body>
-</html>
+</html> --}}
+
+
+
+
+@extends('layouts.app')
+
+@section('content')
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    @include('user.dashboard.cards')   <!-- Card 1-3 -->
+    @include('user.dashboard.lastorder')    <!-- Card Status Pemesanan -->
+    @include('user.dashboard.promochat')    <!-- Promo + Chat -->
+</div>
+@endsection
