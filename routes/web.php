@@ -12,6 +12,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/damar', function () {
+    return 'damar ngising';
+});
+
+
 // ===============================
 // DASHBOARD USER
 // ===============================
