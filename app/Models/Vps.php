@@ -10,13 +10,18 @@ class Vps extends Model
     use HasFactory;
 
     protected $fillable = [
+'nama_vps',
+        'ip_address',
+        'username',
+        'password',
+        'lokasi_server',
+        'tanggal_aktif',
+        'tanggal_expired',
+        'status',
         'user_id',
-        'cpu',
-        'ram',
-        'storage',
-        'os',
-        'location',
-        'description',
-        'status'
     ];
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

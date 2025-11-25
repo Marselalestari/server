@@ -11,6 +11,7 @@ class VpsRequest extends Model
 
     protected $fillable = [
         'user_id',
+        'server_name',
         'cpu',
         'ram',
         'storage',
@@ -18,5 +19,11 @@ class VpsRequest extends Model
         'lokasi',
         'keterangan',
         'status',
+        'assigned_ip',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

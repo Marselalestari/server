@@ -1,56 +1,56 @@
-@extends('layouts.admin')
-
-@section('title', 'Kelola VPS')
+{{-- @extends('layouts.user')
 
 @section('content')
+<div class="p-6">
 
-<h2 class="text-2xl font-bold text-white mb-6">Kelola VPS</h2>
+    <h2 class="text-2xl font-bold mb-4">Daftar VPS Saya</h2>
 
-<a href="{{ route('admin.vps.create') }}" class="px-4 py-2 bg-accent-purple rounded-lg text-white hover:bg-purple-700">
-    + Tambah VPS
-</a>
+    <table class="w-full text-left border border-gray-700 bg-[#181818] rounded-lg">
+        <thead class="bg-[#222]">
+            <tr>
+                <th class="p-3">Nama VPS</th>
+                <th class="p-3">IP Address</th>
+                <th class="p-3">Status</th>
+                <th class="p-3">Aksi</th>
+            </tr>
+        </thead>
 
-@if(session('success'))
-    <div class="mt-4 p-3 bg-green-700 rounded">{{ session('success') }}</div>
-@endif
+        <tbody>
+            @foreach($vps as $item)
+            <tr class="border-t border-gray-700">
+                <td class="p-3">{{ $item->nama_vps }}</td>
+                <td class="p-3">{{ $item->ip_address }}</td>
+                <td class="p-3">
+                    <span class="px-2 py-1 rounded bg-green-600 text-white text-xs">
+                        {{ $item->status }}
+                    </span>
+                </td>
+                <td class="p-3">
+                    <a href="{{ route('vps.edit', $item->id) }}" class="text-blue-400">Edit</a>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    <form action="{{ route('vps.destroy', $item->id) }}" method="POST"
+                          class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button onclick="return confirm('Hapus VPS ini?')" 
+                                class="text-red-400 ml-2">
+                            Delete
+                        </button>
+                    </form>
 
-    @foreach($vps as $item)
-    <div class="dashboard-card p-6 rounded-xl">
-
-        <h3 class="text-xl font-semibold text-white">{{ $item->name }}</h3>
-        <p class="text-gray-300 mb-2">Pemilik: 
-            @if($item->user)
-                {{ $item->user->name }}
-            @else
-                <span class="text-gray-500">Tidak terhubung</span>
-            @endif
-        </p>
-
-        <p class="text-gray-400 text-sm">CPU: {{ $item->cpu }} Core</p>
-        <p class="text-gray-400 text-sm">RAM: {{ $item->ram }} GB</p>
-        <p class="text-gray-400 text-sm">Storage: {{ $item->storage }} GB</p>
-        <p class="text-gray-400 text-sm mb-4">Harga: Rp {{ number_format($item->price) }}</p>
-
-        <div class="flex justify-end gap-2">
-            <a href="{{ route('admin.vps.edit', $item->id) }}" 
-               class="px-3 py-1 bg-accent-purple text-white rounded-lg hover:bg-purple-700">
-               Edit
-            </a>
-            
-
-            <form action="{{ route('admin.vps.destroy', $item->id) }}" method="POST">
-                @csrf @method('DELETE')
-                <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                    Hapus
-                </button>
-            </form>
-        </div>
-
-    </div>
-    @endforeach
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 </div>
+@endsection --}}
 
+
+@extends('layouts.app-admin')
+
+@section('content')
+<h1 class="text-3xl font-bold">VPS</h1>
+<p>Ini halaman VPS.</p>
 @endsection

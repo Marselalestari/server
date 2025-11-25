@@ -12,16 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vps', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('user_id')->constrained()->onDelete('cascade');
-    $table->string('name');
-    $table->integer('cpu');
-    $table->integer('ram');
-    $table->integer('disk');
-    $table->string('status')->default('active');
-    $table->timestamps();
-});
+            $table->id();
+            $table->string('nama_vps');
+            $table->string('ip_address');
+            $table->string('username');
+            $table->string('password');
+            $table->string('lokasi_server')->nullable();
+            $table->date('tanggal_aktif');
+            $table->date('tanggal_expired');
+            $table->string('status')->default('aktif'); // aktif / suspend / mati
+            $table->unsignedBigInteger('user_id'); // pemilik VPS
+            $table->timestamps();
 
+            // Relasi ke tabel users
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
+        });
     }
 
     /**

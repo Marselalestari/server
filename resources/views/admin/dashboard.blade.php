@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.sidebar-admin')
 
 @section('title', 'Dashboard')
 @section('subtitle', 'Halo Admin, selamat datang kembali 👋')

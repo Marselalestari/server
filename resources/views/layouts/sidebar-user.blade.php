@@ -8,28 +8,45 @@
     </div>
 
     <!-- Menu -->
-    <nav class="flex-grow space-y-2">
-        <a href="{{ route('dashboard') }}" 
-           class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('dashboard') ? 'sidebar-active' : '' }}">
-            <i class="fas fa-th-large mr-3"></i> Dashboard
-        </a>
-        <a href="{{ route('request') }}" 
-           class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('request') ? 'sidebar-active' : '' }}">
-            <i class="fas fa-layer-group mr-3"></i> Request VPS
-        </a>
-        <a href="{{ route('vps') }}" 
-           class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('vps') ? 'sidebar-active' : '' }}">
-            <i class="fas fa-history mr-3"></i> VPS Saya
-        </a>
-        <a href="{{ route('riwayatpemesanan') }}" 
-           class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('riwayatpemesanan') ? 'sidebar-active' : '' }}">
-            <i class="fas fa-history mr-3"></i> Riwayat Pemesanan
-        </a>
-        <a href="{{ route('bilingtagihan') }}" 
-           class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('bilingtagihan') ? 'sidebar-active' : '' }}">
-            <i class="fas fa-history mr-3"></i> Billing / Tagihan
-        </a>
-    </nav>
+ <nav class="flex-grow space-y-2">
+
+    {{-- Dashboard --}}
+    <a href="{{ route('dashboard') }}" 
+       class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('dashboard') ? 'sidebar-active' : '' }}">
+        <i class="fas fa-home mr-3"></i> Dashboard
+    </a>
+
+    <a href="#"
+    class="flex items-center px-4 py-3 rounded-lg text-sm font-medium ">
+    <i class="fas fa-home mr-3"></i>Produk
+</a>
+
+    {{-- Request VPS --}}
+    <a href="{{ route('request') }}"
+       class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('request') ? 'sidebar-active' : '' }}">
+        <i class="fas fa-paper-plane mr-3"></i> Request
+    </a>
+
+    {{-- VPS List --}}
+    <a href="{{ route('vps') }}"
+       class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('vps') ? 'sidebar-active' : '' }}">
+        <i class="fas fa-server mr-3"></i> VPS
+    </a>
+
+    {{-- Riwayat Pemesanan --}}
+    <a href="{{ route('riwayatpemesanan') }}"
+       class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('riwayatpemesanan') ? 'sidebar-active' : '' }}">
+        <i class="fas fa-history mr-3"></i> Riwayat 
+    </a>
+
+    {{-- Tagihan --}}
+    <a href="{{ route('bilingtagihan') }}"
+       class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('bilingtagihan') ? 'sidebar-active' : '' }}">
+        <i class="fas fa-file-invoice-dollar mr-3"></i> Tagihan
+    </a>
+
+</nav>
+
 
     <!-- Spacer -->
     <div class="flex-grow"></div>

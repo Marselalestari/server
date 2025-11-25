@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
 @section('title', 'Kelola Pengguna')
 @section('subtitle', 'Manajemen data pengguna sistem VPS')
@@ -99,4 +99,42 @@
 
 </div>
 
+@endsection --}}
+
+
+
+@extends('layouts.app-admin')
+
+@section('content')
+    <h1 class="text-3xl font-bold mb-4">Users</h1>
+    <a href="{{ route('admin.users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">Tambah User</a>
+
+    <table class="w-full bg-white shadow rounded">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">#</th>
+                <th class="px-4 py-2">Nama</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{-- Loop users --}}
+            @foreach($users as $user)
+            <tr>
+                <td class="border px-4 py-2">{{ $loop->iteration }}</td>
+                <td class="border px-4 py-2">{{ $user->name }}</td>
+                <td class="border px-4 py-2">{{ $user->email }}</td>
+                <td class="border px-4 py-2">
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-blue-500">Edit</a>
+                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-500">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection

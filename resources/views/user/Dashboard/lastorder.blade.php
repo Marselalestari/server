@@ -1,4 +1,4 @@
-<div class="lg:col-span-1 dashboard-card p-6 rounded-xl space-y-4">
+{{-- <div class="lg:col-span-1 dashboard-card p-6 rounded-xl space-y-4">
     <div class="flex justify-between items-center">
         <h3 class="font-semibold text-lg">Status Pemesanan Terakhir</h3>
         <button class="text-gray-400 hover:text-accent-purple"><i class="fas fa-ellipsis-v"></i></button>
@@ -39,4 +39,4 @@
         </div>
         <span class="text-xs text-green-400 font-semibold">Aktif</span>
     </div>
-</div>
+</div> --}}

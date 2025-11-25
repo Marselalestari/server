@@ -96,11 +96,11 @@
 </head>
 <body class="text-white min-h-screen flex">
 
-    @include('layouts.sidebar-user') <!-- Sidebar -->
+    @include('layouts.sidebar-admin') <!-- Sidebar -->
     {{-- @include('layouts.sidebar-admin') <!-- Sidebar --> --}}
 
     <div class="flex-1 ml-64 p-6 md:p-10">
-        @include('layouts.header') <!-- Header/top nav -->
+        {{-- @include('layouts.header') <!-- Header/top nav --> --}}
 
         @yield('content') <!-- Isi dashboard -->
     </div>

@@ -1,4 +1,4 @@
-<div class="dashboard-card p-6 rounded-xl space-y-4 flex flex-col">
+{{-- <div class="dashboard-card p-6 rounded-xl space-y-4 flex flex-col">
     <div class="flex justify-between items-center">
         <h3 class="font-semibold text-lg">Team Chat</h3>
         <button class="text-gray-400 hover:text-accent-purple"><i class="fas fa-ellipsis-v"></i></button>
@@ -27,4 +27,4 @@
             Kirim
         </button>
     </div>
-</div>
+</div> --}}

@@ -1,4 +1,4 @@
-
+{{-- 
 <div class="dashboard-card p-6 rounded-xl">
     <div class="grid grid-cols-3 gap-4">
         <!-- Promo 1: VPS -->
@@ -35,4 +35,4 @@
             </button>
         </div>
     </div>
-</div>
+</div> --}}
