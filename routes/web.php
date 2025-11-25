@@ -58,15 +58,94 @@ Route::middleware(['auth', 'isAdmin'])
     ->name('admin.')
     ->group(function () {
 
-        // Dashboard Admin
+        // ===========================
+        // DASHBOARD
+        // ===========================
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        // User List View
-        Route::get('/users', [UserController::class, 'index'])->name('users');
 
+        // ===========================
+        // MANAJEMEN PENGGUNA
+        // ===========================
+        Route::get('/pengguna', function () {
+            return view('admin.pengguna.index');
+        })->name('pengguna');
+
+
+        // ===========================
+        // PRODUK
+        // ===========================
+        Route::get('/produk', function () {
+            return view('admin.produk.index');
+        })->name('produk');
+
+
+        // ===========================
+        // PROSES REQUEST
+        // ===========================
+        Route::get('/requests/pending', function () {
+            return view('admin.requests.pending');
+        })->name('requests.pending');
+
+
+        // ===========================
+        // DAFTAR VPS AKTIF
+        // ===========================
+        Route::get('/vps/list', function () {
+            return view('admin.vps.list');
+        })->name('vps.list');
+
+
+        // ===========================
+        // RIWAYAT ORDER
+        // ===========================
+        Route::get('/orders/history', function () {
+            return view('admin.orders.history');
+        })->name('orders.history');
+
+
+        // ===========================
+        // KELOLA TAGIHAN
+        // ===========================
+        Route::get('/billing/invoices', function () {
+            return view('admin.billing.invoices');
+        })->name('billing.invoices');
+
+
+        // ===========================
+        // TIKET DUKUNGAN
+        // ===========================
+        Route::get('/support/tickets', function () {
+            return view('admin.support.tickets');
+        })->name('support.tickets');
+
+
+        // ===========================
+        // PROFILE ADMIN
+        // ===========================
+        Route::get('/profile', function () {
+            return view('admin.profile.edit');
+        })->name('profile.edit');
+
+
+        // ===========================
+        // USER CRUD (PAKAI CONTROLLER)
+        // ===========================
+        Route::get('/users', [UserController::class, 'index'])->name('users');
+        
+        Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
+        // ===========================
         // VPS
+        // ===========================
         Route::get('/vps', function () {
             return view('admin.vps.index');
         })->name('vps');
@@ -75,27 +154,33 @@ Route::middleware(['auth', 'isAdmin'])
             return view('admin.vps.orders');
         })->name('vps.orders');
 
-        // Transactions
+
+        // ===========================
+        // TRANSAKSI
+        // ===========================
         Route::get('/transactions', function () {
             return view('admin.transactions.index');
         })->name('transactions');
 
-        // Reports
+
+        // ===========================
+        // LAPORAN
+        // ===========================
         Route::get('/reports', function () {
             return view('admin.reports.index');
         })->name('reports');
 
-        // ----------------------------
-        // USER CRUD (Admin)
-        // ----------------------------
-        Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/users', [UserController::class, 'store'])->name('users.store');
-
-        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
+
+
+
+
+
+
+
+
+
+
 
 
 // ===============================
