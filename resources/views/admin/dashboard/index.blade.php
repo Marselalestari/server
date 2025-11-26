@@ -11,15 +11,17 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
+    <!-- Manajemen Pengguna -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
-            <h3 class="text-lg font-semibold">Total Pengguna</h3>
+            <h3 class="text-lg font-semibold">Manajemen Pengguna</h3>
             <i class="fas fa-users text-accent-purple text-2xl"></i>
         </div>
         <p class="text-3xl font-bold mt-3">124</p>
         <p class="text-sm text-gray-400 mt-1">Aktif bulan ini</p>
     </div>
-
+{{-- 
+    <!-- Total VPS -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Total VPS</h3>
@@ -27,8 +29,9 @@
         </div>
         <p class="text-3xl font-bold mt-3">58</p>
         <p class="text-sm text-gray-400 mt-1">Digunakan pengguna</p>
-    </div>
+    </div> --}}
 
+    <!-- Order Masuk -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Order Masuk</h3>
@@ -38,6 +41,7 @@
         <p class="text-sm text-gray-400 mt-1">Dalam 7 hari terakhir</p>
     </div>
 
+    <!-- Produk -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Produk</h3>
@@ -47,6 +51,7 @@
         <p class="text-sm text-gray-400 mt-1">Produk aktif</p>
     </div>
 
+    <!-- Transaksi -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Transaksi</h3>
@@ -56,6 +61,7 @@
         <p class="text-sm text-gray-400 mt-1">Sukses diproses</p>
     </div>
 
+    <!-- Tiket Support -->
     <div class="dashboard-card p-5 rounded-xl">
         <div class="flex items-center justify-between">
             <h3 class="text-lg font-semibold">Tiket Support</h3>

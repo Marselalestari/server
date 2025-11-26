@@ -16,9 +16,10 @@
         <i class="fas fa-home mr-3"></i> Dashboard
     </a>
 
-    <a href="#"
-    class="flex items-center px-4 py-3 rounded-lg text-sm font-medium ">
-    <i class="fas fa-home mr-3"></i>Produk
+<a href="{{ route('user.products.index') }}"
+   class="flex items-center px-4 py-3 rounded-lg text-sm font-medium 
+          {{ request()->routeIs('user.products.*') ? 'sidebar-active' : '' }}">
+    <i class="fas fa-box mr-3"></i> Produk
 </a>
 
     {{-- Request VPS --}}
@@ -33,6 +34,8 @@
         <i class="fas fa-server mr-3"></i> VPS
     </a>
 
+
+    
     {{-- Riwayat Pemesanan --}}
     <a href="{{ route('riwayatpemesanan') }}"
        class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('riwayatpemesanan') ? 'sidebar-active' : '' }}">
@@ -45,7 +48,15 @@
         <i class="fas fa-file-invoice-dollar mr-3"></i> Tagihan
     </a>
 
+{{-- VPS List --}}
+<a href="{{ route('vps') }}"
+   class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('vps') ? 'sidebar-active' : '' }}">
+    <i class="fas fa-server mr-3"></i> Hubungi
+</a>
+
+
 </nav>
+
 
 
     <!-- Spacer -->
