@@ -49,8 +49,8 @@
     </a>
 
 {{-- VPS List --}}
-<a href="{{ route('vps') }}"
-   class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('vps') ? 'sidebar-active' : '' }}">
+<a href="{{ route('hubungi') }}"
+   class="flex items-center px-4 py-3 rounded-lg text-sm font-medium {{ request()->routeIs('hubungi') ? 'sidebar-active' : '' }}">
     <i class="fas fa-server mr-3"></i> Hubungi
 </a>
 

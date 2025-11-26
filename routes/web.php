@@ -64,6 +64,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/tagihan', function () {
         return view('user.billingtagihan.index');
     })->name('bilingtagihan');
+
+    // Hubungi
+    Route::get('/hubungi', function () {
+        return view('user.hubungi.index');
+    })->name('hubungi');
 });
 
 // ===============================
