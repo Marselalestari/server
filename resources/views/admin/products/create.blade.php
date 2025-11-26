@@ -1,81 +1,75 @@
 @extends('layouts.app-admin')
 
+@section('title', 'Tambah Produk')
+@section('subtitle', 'Form tambah produk VPS')
+
 @section('content')
 
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-white">Tambah Produk VPS</h1>
-    <p class="text-sm text-gray-400">Isi detail paket VPS yang ingin ditambahkan</p>
-</div>
+@if(session('success'))
+    <div class="p-4 mb-6 rounded-xl" style="background-color:#e0d4ff; color:#4b0082;">
+        {{ session('success') }}
+    </div>
+@endif
 
-<div class="bg-card-dark border border-gray-700 shadow-lg rounded-lg p-6">
+<div class="bg-[#1F2847] p-6 rounded-2xl shadow-lg border border-[#2B3454] max-w-lg mx-auto">
 
-    <form action="{{ route('admin.products.store') }}" method="POST" class="space-y-5">
+    <h2 class="text-xl font-semibold text-white mb-6">Tambah Produk</h2>
+
+    <form action="{{ route('admin.products.store') }}" method="POST">
         @csrf
 
-        <!-- Nama Produk -->
-        <div>
-            <label class="block text-gray-300 mb-1">Nama Produk</label>
-            <input type="text" name="name"
-                class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                placeholder="Contoh: VPS Basic">
+        <div class="mb-4">
+            <label class="block mb-1 text-gray-200 font-medium">Nama Produk</label>
+            <input type="text" name="name" class="w-full p-2 rounded-lg border border-gray-600 bg-[#2B3454] text-white" required>
         </div>
 
-        <!-- CPU, RAM, Storage -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-                <label class="block text-gray-300 mb-1">CPU (Core)</label>
-                <input type="number" name="cpu"
-                    class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                    placeholder="2">
-            </div>
-
-            <div>
-                <label class="block text-gray-300 mb-1">RAM (GB)</label>
-                <input type="number" name="ram"
-                    class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                    placeholder="4">
-            </div>
-
-            <div>
-                <label class="block text-gray-300 mb-1">Storage (GB)</label>
-                <input type="number" name="storage"
-                    class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                    placeholder="50">
-            </div>
+        <div class="mb-4">
+            <label class="block mb-1 text-gray-200 font-medium">CPU (Core)</label>
+            <input type="number" name="cpu" id="cpu" class="w-full p-2 rounded-lg border border-gray-600 bg-[#2B3454] text-white" min="1" value="1">
         </div>
 
-        <!-- Bandwidth -->
-        <div>
-            <label class="block text-gray-300 mb-1">Bandwidth</label>
-            <input type="text" name="bandwidth"
-                class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                placeholder="Unlimited / 1 TB">
+        <div class="mb-4">
+            <label class="block mb-1 text-gray-200 font-medium">RAM (GB)</label>
+            <input type="number" name="ram" id="ram" class="w-full p-2 rounded-lg border border-gray-600 bg-[#2B3454] text-white" min="1" value="1">
         </div>
 
-        <!-- Harga -->
-        <div>
-            <label class="block text-gray-300 mb-1">Harga (Rp)</label>
-            <input type="number" name="price"
-                class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                placeholder="50000">
+        <div class="mb-4">
+            <label class="block mb-1 text-gray-200 font-medium">Storage (GB)</label>
+            <input type="number" name="storage" id="storage" class="w-full p-2 rounded-lg border border-gray-600 bg-[#2B3454] text-white" min="20" value="20">
         </div>
 
-        <!-- Deskripsi -->
-        <div>
-            <label class="block text-gray-300 mb-1">Deskripsi</label>
-            <textarea name="description"
-                class="w-full p-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring focus:ring-blue-600"
-                rows="4"
-                placeholder="Detail produk VPS..."></textarea>
+        <div class="mb-4">
+            <label class="block mb-1 text-gray-200 font-medium">Harga</label>
+            <input type="text" id="price" class="w-full p-2 rounded-lg border border-gray-600 bg-[#2B3454] text-white" readonly>
         </div>
 
-        <!-- Tombol Simpan -->
-        <button
-            class="bg-blue-600 hover:bg-blue-700 px-6 py-3 text-white rounded-lg shadow-md transition font-semibold">
-            Simpan Produk
+        <button type="submit" class="px-4 py-2 rounded-lg bg-[#8E67F6] hover:bg-[#7a55d8] transition text-white font-medium shadow-md">
+            <i class="fas fa-save mr-2"></i> Simpan
         </button>
-
     </form>
 </div>
+
+<script>
+    function calculatePrice() {
+        let cpu = parseInt(document.getElementById('cpu').value) || 0;
+        let ram = parseInt(document.getElementById('ram').value) || 0;
+        let storage = parseInt(document.getElementById('storage').value) || 0;
+
+        let basePrice = 10000;
+        let cpuPrice = 5000 * cpu;
+        let ramPrice = 3000 * ram;
+        let storagePrice = 200 * storage;
+
+        let total = basePrice + cpuPrice + ramPrice + storagePrice;
+
+        document.getElementById('price').value = 'Rp ' + total.toLocaleString();
+    }
+
+    document.getElementById('cpu').addEventListener('input', calculatePrice);
+    document.getElementById('ram').addEventListener('input', calculatePrice);
+    document.getElementById('storage').addEventListener('input', calculatePrice);
+
+    calculatePrice();
+</script>
 
 @endsection

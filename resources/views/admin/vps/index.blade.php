@@ -1,56 +1,61 @@
-{{-- @extends('layouts.user')
-
-@section('content')
-<div class="p-6">
-
-    <h2 class="text-2xl font-bold mb-4">Daftar VPS Saya</h2>
-
-    <table class="w-full text-left border border-gray-700 bg-[#181818] rounded-lg">
-        <thead class="bg-[#222]">
-            <tr>
-                <th class="p-3">Nama VPS</th>
-                <th class="p-3">IP Address</th>
-                <th class="p-3">Status</th>
-                <th class="p-3">Aksi</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($vps as $item)
-            <tr class="border-t border-gray-700">
-                <td class="p-3">{{ $item->nama_vps }}</td>
-                <td class="p-3">{{ $item->ip_address }}</td>
-                <td class="p-3">
-                    <span class="px-2 py-1 rounded bg-green-600 text-white text-xs">
-                        {{ $item->status }}
-                    </span>
-                </td>
-                <td class="p-3">
-                    <a href="{{ route('vps.edit', $item->id) }}" class="text-blue-400">Edit</a>
-
-                    <form action="{{ route('vps.destroy', $item->id) }}" method="POST"
-                          class="inline">
-                        @csrf
-                        @method('DELETE')
-                        <button onclick="return confirm('Hapus VPS ini?')" 
-                                class="text-red-400 ml-2">
-                            Delete
-                        </button>
-                    </form>
-
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-</div>
-@endsection --}}
-
-
 @extends('layouts.app-admin')
 
+@section('title', 'Kelola Request VPS')
+@section('subtitle', 'Manajemen request VPS')
+
 @section('content')
-<h1 class="text-3xl font-bold">VPS</h1>
-<p>Ini halaman VPS.</p>
+
+@if(session('success'))
+    <div class="p-4 mb-6 rounded-xl" style="background-color:#e0d4ff; color:#4b0082;">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="bg-[#1F2847] p-6 rounded-2xl shadow-lg border border-[#2B3454]">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-white">Daftar Request VPS</h2>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-[#27304A] text-gray-300">
+                <tr>
+                    <th class="py-3 px-4">#</th>
+                    <th class="py-3 px-4">User</th>
+                    <th class="py-3 px-4">Server</th>
+                    <th class="py-3 px-4">CPU</th>
+                    <th class="py-3 px-4">RAM</th>
+                    <th class="py-3 px-4">Storage</th>
+                    <th class="py-3 px-4">OS</th>
+                    <th class="py-3 px-4">Lokasi</th>
+                    <th class="py-3 px-4">Status</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-200">
+                @forelse($requests as $request)
+                    <tr class="border-b border-[#2F3958] hover:bg-[#2A3352] transition">
+                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4">{{ $request->user->name ?? '-' }}</td>
+                        <td class="py-3 px-4">{{ $request->server_name }}</td>
+                        <td class="py-3 px-4">{{ $request->cpu }}</td>
+                        <td class="py-3 px-4">{{ $request->ram }}</td>
+                        <td class="py-3 px-4">{{ $request->storage }}</td>
+                        <td class="py-3 px-4">{{ $request->os }}</td>
+                        <td class="py-3 px-4">{{ $request->lokasi }}</td>
+                        <td class="py-3 px-4 capitalize">{{ $request->status }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="9" class="text-center py-6 text-gray-400">
+                            Belum ada request VPS.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
 @endsection
