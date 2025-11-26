@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminBillingController;
 use App\Http\Controllers\Admin\AdminTicketController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\User\UserProductController;
+use App\Models\Product;
 
 // ===============================
 // Halaman Utama
@@ -27,7 +28,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('user.dashboard.index');
+    $products = Product::all();   
+    return view('user.dashboard.index', compact('products'));
     })->name('dashboard');
 
     Route::get('/produk', [UserProductController::class, 'index'])->name('user.products.index');

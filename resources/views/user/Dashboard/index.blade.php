@@ -379,5 +379,6 @@
     @include('user.dashboard.cards')   <!-- Card 1-3 -->
     @include('user.dashboard.lastorder')    <!-- Card Status Pemesanan -->
     @include('user.dashboard.promochat')    <!-- Promo + Chat -->
+    @include('user.products.index')
 </div>
 @endsection
