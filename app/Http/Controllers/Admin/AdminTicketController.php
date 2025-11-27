@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 
 class AdminTicketController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // Nanti diganti dengan model Ticket jika sudah ada
+        $tickets = [];
+
+        return view('admin.tickets.index', compact('tickets'));
     }
+
 
     /**
      * Show the form for creating a new resource.

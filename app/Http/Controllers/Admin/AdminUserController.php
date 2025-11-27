@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 class AdminUserController extends Controller
 {
     public function index()
-    {
-        return view('admin.users.index');
-    }
+{
+    // Ambil semua user
+    $users = \App\Models\User::all();
+
+    // Kirim ke view
+    return view('admin.users.index', compact('users'));
+}
+
 
     public function create()
     {

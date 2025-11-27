@@ -1,57 +1,74 @@
 @extends('layouts.app-admin')
 
+@section('title', 'Daftar Produk')
+@section('subtitle', 'Manajemen produk VPS')
+
 @section('content')
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-white">Daftar Produk VPS</h1>
-    <p class="text-sm text-gray-400">Kelola semua paket VPS yang tersedia</p>
+
+@if(session('success'))
+    <div class="p-4 mb-6 rounded-xl" style="background-color:#e0d4ff; color:#4b0082;">
+        {{ session('success') }}
+    </div>
+@endif
+
+<div class="bg-[#1F2847] p-6 rounded-2xl shadow-lg border border-[#2B3454]">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-white">Daftar Produk</h2>
+        <a href="{{ route('admin.products.create') }}"
+           class="px-4 py-2 rounded-lg bg-[#8E67F6] hover:bg-[#7a55d8] transition text-white font-medium shadow-md">
+            <i class="fas fa-plus mr-2"></i> Tambah Produk
+        </a>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-[#27304A] text-gray-300">
+                <tr>
+                    <th class="py-3 px-4">#</th>
+                    <th class="py-3 px-4">Nama</th>
+                    <th class="py-3 px-4">CPU</th>
+                    <th class="py-3 px-4">RAM</th>
+                    <th class="py-3 px-4">Storage</th>
+                    <th class="py-3 px-4 text-center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-200">
+                @forelse ($products as $product)
+                    <tr class="border-b border-[#2F3958] hover:bg-[#2A3352] transition">
+                        <td class="py-3 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-3 px-4">{{ $product->name }}</td>
+                        <td class="py-3 px-4">{{ $product->cpu }}</td>
+                        <td class="py-3 px-4">{{ $product->ram }}</td>
+                        <td class="py-3 px-4">{{ $product->storage }}</td>
+                        <td class="py-3 px-4 text-center">
+                            <a href="{{ route('admin.products.edit', $product) }}"
+                               class="px-3 py-1 rounded-lg bg-blue-600/30 text-blue-300 hover:bg-blue-600/40 transition">
+                               <i class="fas fa-edit"></i>
+                            </a>
+                            <form action="{{ route('admin.products.destroy', $product) }}"
+                                  method="POST"
+                                  class="inline-block"
+                                  onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="px-3 py-1 rounded-lg bg-red-600/30 text-red-300 hover:bg-red-600/40 transition">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center py-6 text-gray-400">
+                            Tidak ada produk tersedia.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
-<a href="{{ route('admin.products.create') }}" 
-   class="bg-blue-600 hover:bg-blue-700 px-4 py-2 text-white rounded-lg mb-4 inline-block shadow">
-    + Tambah Produk VPS
-</a>
-
-<div class="bg-card-dark shadow-lg rounded-lg border border-gray-700 mt-4">
-    <table class="w-full text-left">
-        <thead>
-            <tr class="bg-gray-800 text-gray-300">
-                <th class="px-4 py-3">Nama</th>
-                <th class="px-4 py-3">CPU</th>
-                <th class="px-4 py-3">RAM</th>
-                <th class="px-4 py-3">Storage</th>
-                <th class="px-4 py-3">Harga</th>
-                <th class="px-4 py-3">Aksi</th>
-            </tr>
-        </thead>
-
-        <tbody class="text-gray-200">
-            @foreach($products as $product)
-            <tr class="border-t border-gray-700 hover:bg-gray-800/60 transition">
-                <td class="px-4 py-3 font-medium">{{ $product->name }}</td>
-                <td class="px-4 py-3">{{ $product->cpu }} Core</td>
-                <td class="px-4 py-3">{{ $product->ram }} GB</td>
-                <td class="px-4 py-3">{{ $product->storage }} GB</td>
-                <td class="px-4 py-3">Rp {{ number_format($product->price) }}</td>
-
-                <td class="px-4 py-3 flex gap-4">
-                    <a href="{{ route('admin.products.edit', $product->id) }}" 
-                       class="text-blue-400 hover:text-blue-300 font-semibold">
-                        Edit
-                    </a>
-
-                    <form method="POST" 
-                          action="{{ route('admin.products.destroy', $product->id) }}">
-                        @csrf 
-                        @method('DELETE')
-                        <button class="text-red-500 hover:text-red-400 font-semibold"
-                                onclick="return confirm('Yakin ingin hapus produk ini?')">
-                            Hapus
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
 @endsection

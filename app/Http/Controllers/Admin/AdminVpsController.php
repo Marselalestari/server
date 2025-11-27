@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\VpsRequest;
 
-class AdminVpsController extends Controller
+class AdminOrderController extends Controller
 {
     public function index()
     {
-        return view('admin.vps.index'); // buat view resources/views/admin/vps/index.blade.php
+        $requests = VpsRequest::with('user')->get();
+        return view('admin.vps.index', compact('requests'));
     }
 }

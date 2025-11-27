@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminBillingController;
 use App\Http\Controllers\Admin\AdminTicketController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminVpsRequestController;
 use App\Http\Controllers\User\UserProductController;
 use App\Models\Product;
 
@@ -84,7 +85,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     // VPS
     Route::get('vps', [AdminVpsController::class, 'index'])->name('vps.index');
-    Route::get('vps/requests', [AdminVpsController::class, 'requests'])->name('vps.requests');
+    // Kalau ada request VPS user dan VPS aktif
+    Route::get('vps/requests', [AdminVpsController::class, 'index'])->name('vps.requests');
     Route::get('vps/active', [AdminVpsController::class, 'active'])->name('vps.active');
 
     // Products (CRUD admin)
